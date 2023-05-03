@@ -10,17 +10,18 @@ public class Main {
             Scanner sc = new Scanner(new File(fname));
             int kolvoLevels = sc.nextInt();
             PlanetLevel[] levels = new PlanetLevel[kolvoLevels];
-            for (int i = 1; i <= kolvoLevels; i++) {
+            for (int i = 0; i < kolvoLevels; i++) {
                 levels[i] = new PlanetLevel();
                 int kPlanets = sc.nextInt();
                 sc.nextLine();//переход на след строку файла, где уже должно быть описание планеты
-                for (int j = 1; j <= kPlanets; j++) {
+                for (int j = 0; j < kPlanets; j++) {
                     Planet planet = new Planet(i+"."+j);
                     String planetStr = sc.nextLine();
                     levels[i].planets.add(planet);
 
                 }
-                sc.nextLine();  //пропустить строку со *
+                if (sc.hasNext())
+                    sc.nextLine();  //пропустить строку со *
             }
 
 
