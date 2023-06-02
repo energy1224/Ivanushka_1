@@ -14,8 +14,6 @@ public class Main {
             PlanetLevel[] levels = new PlanetLevel[kolvoLevels + 1];
             levels[0] = new PlanetLevel();
             levels[0].planets.add(new Planet("0.1"));
-
-
             ArrayList<Tunnel> tunnels = new ArrayList<>();
 
             for (int i = 1; i <= kolvoLevels; i++) {
@@ -23,29 +21,25 @@ public class Main {
                 int kPlanets = sc.nextInt();
                 sc.nextLine();//переход на след строку файла, где уже должно быть описание планеты
                 for (int j = 1; j <= kPlanets; j++) {
-                    Planet planet = new Planet(i + "." + j);
-                    levels[i].planets.add(planet);
+                    Planet planet = new Planet(i+"."+j);
                     String planetStr = sc.nextLine();
+                    levels[i].planets.add(planet);
                     System.out.println(planetStr);
                     int[] dataPlanet = stringToArray(planetStr);
-                    //int[] mas = new int[2];
-//                    for(int z = 0; z< dataPlanet.length; z++){
-//                        System.out.println(dataPlanet[z]);
-                    // mas[z] = dataPlanet[z];
-
-
-                    Tunnel tube = new Tunnel();
-                    tube.from =
-                            tube.to = planet;
-                    tube.cost = dataPlanet[1];
-
+                    if (dataPlanet.length == 2){
+                        Tunnel tube = new Tunnel();
+                         tube.from = planet ;
+                         tube.to = planet ;
+                         tube.cost = dataPlanet[1];
+                        System.out.println(tube);
+                    }
 
                 }
-
-
+                if (sc.hasNext())
+                    sc.nextLine();  //пропустить строку со *
             }
-            if (sc.hasNext())
-                sc.nextLine();  //пропустить строку со *
+
+
 
 
             // а теперь выведем все планеты
